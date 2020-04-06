@@ -13,7 +13,7 @@ struct SWIMMINGPOOL
 
 };
 
-////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
 void insertCustomer(SWIMMINGPOOL orders[], int& customercount)
 {
 	cout << "Enter age: "; cout << endl;
