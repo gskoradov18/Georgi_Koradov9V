@@ -67,13 +67,32 @@ void deleteCustomer(SWIMMINGPOOL* customers, int& customercount)
 	}
 	customercount--;
 }
-void getCustomer
+int getOrderIndexById(SWIMMINGPOOL* customers, int& customercount, int id)
+{
+	for (int i = 0; i < customercount; i++)
+	{
+		if (customers[i].id == id) // check 
+		{
+			return i;
+		}
+	}
+
+	return -1;
+}
+SWIMMINGPOOL getCustomer(SWIMMINGPOOL* customers, int& customercount, int id)
+{
+	int index = getOrderIndexById(customers, customercount, id);
+	return customers[index];
+}
 void editCusotmer(SWIMMINGPOOL* customers, int& customercount)
 {
 	int id;
+	int choose;
 	cout << "Enter id";
 	cin >> id;
-	int choose;
+
+	SWIMMINGPOOL customer = getCustomer(customers, customercount, id);
+	
 	cout << "1. Change age: " << endl;
 	cout << "2. Cahnge time" << endl;
 	cout << "3. Change id" << endl;
@@ -85,22 +104,22 @@ void editCusotmer(SWIMMINGPOOL* customers, int& customercount)
 	case 1:
 		cout << "Enter the new age:";
 		cin >> customer.age;
-		updateCustomer(customers, customercount, index, newcustomer);
+		updateCustomer(customers, customer, customercount, id);
 		break;
 	case 2:
 		cout << "Enter the new time:";
 		cin >> customer.time;
-		updateCustomer(customers, customercount, index, newcustomer);
+		updateCustomer(customers, customer, customercount,  id);
 		break;	
 	case 3:
 			cout << "Enter the new id:";
 			cin >> customer.id;
-			updateCustomer(customers, customercount, index, newcustomer);
+			updateCustomer(customers, customer, customercount, id);
 			break;
 	case 4:
 		cout << "Enter the new day of the week:";
 		cin >> customer.dayofweek;
-		updateCustomer(customers, customercount, index, newcustomer);
+		updateCustomer(customers, customer, customercount, id);
 		break;
 
 
@@ -112,9 +131,6 @@ void updateCustomer(SWIMMINGPOOL* customers, int& customercount,int index,SWIMMI
 {
 	customers[index] = newcustomer;
 }
-
-
-
 
 
 
