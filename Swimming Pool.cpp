@@ -2,18 +2,41 @@
 #include <string.h>
 using namespace std;
 
+enum WEEKDAYS
+{
+	MON,
+	TUE,
+	WED,
+	THU,
+	FRI,
 
+};
+
+
+string weekDayToString(WEEKDAYS weekday)
+{
+	if (weekday == MON)
+		return "MON";
+	else if (weekday == TUE)
+		return "TUE";
+	else if (weekday == WED)
+		return "WED";
+	else if (weekday == THU)
+		return "THU";
+	else if (weekday == FRI)
+		return "FRI";
+
+}
 
 struct SWIMMINGPOOL
 {
 	int age;
+	string name;
 	float time;
 	int id;
-	int prize = 20;
-	char dayofweek[3];
+	char dayofweek[4];
+	int prize=20;
 	
-
-
 };
 
 
@@ -21,6 +44,8 @@ struct SWIMMINGPOOL
 
 void insertCustomer(SWIMMINGPOOL* customers, int& customercount)
 {
+	cout << "Enter first name: ";
+	cin >> customers[customercount].name;
 	cout << "Enter age: "; cout;
 	cin >> customers[customercount].age;
 	cout << "Enter time: "; cout;
@@ -32,21 +57,13 @@ void insertCustomer(SWIMMINGPOOL* customers, int& customercount)
 	customercount++;
 }
 
-int prizes(SWIMMINGPOOL* customers, int& customercount)
-{
-	if (customers[customercount].age >= 60 or customers[customercount].age <= 10)
-	{
-		customers[customercount].prize == 10;
-	}
 
-	return customers[customercount].prize;
-
-}
 
 void showCustomer(SWIMMINGPOOL customers)
 {
-
-	cout << "\nCustomer age: ";
+	cout << "Customer fisrt name: "<<endl;
+	cout << customers.name << endl;
+	cout << "Customer age: ";
 	cout << customers.age << endl;
 	cout << "Customer time: ";
 	cout << customers.time << endl;
@@ -54,12 +71,42 @@ void showCustomer(SWIMMINGPOOL customers)
 	cout << customers.id << endl;
 	cout << "Day of week: ";
 	cout << customers.dayofweek << endl;
-	cout << "Prize: ";
-
-	cout << customers.prize << endl;
+	cout << "Prize is: ";
+	cout<<customers.prize << endl;
 	cout << endl;
 
 }
+
+
+int sum(SWIMMINGPOOL customers, WEEKDAYS weekday)
+{
+	WEEKDAYS day[4];
+	cout << "Enter a day on wi";
+	
+	if (weekday == day)
+		return "MON";
+}
+/*
+int prizes(SWIMMINGPOOL* customers, int& customercount)
+{
+	int prize=10;
+
+	if (customers[customercount].age >= 60 or customers[customercount].age <= 10)
+	{
+		customers[customercount].prize = prize;
+	}
+	else
+	{
+		customers[customercount].prize ==20;
+	}
+
+
+	cout<< customers[customercount].prize;
+
+}
+
+*/
+
 
 void showAllcustomers(SWIMMINGPOOL* customers, int& customercount)
 {
@@ -93,30 +140,17 @@ void findCusotmersByAge(SWIMMINGPOOL* customers, int& customercount)
 		}
 	}
 }
-void findCusotmersByDay(SWIMMINGPOOL* customers, int& customercount)
-{
-	char dayOfWeek[3];
-	cout << "Choose the day you want to see the customers: ";
-	cin >> dayOfWeek;
-	for (int i = 0; i < customercount; i++)
-	{
-		if (customers[i].dayofweek = dayOfWeek)
-		{
-			showCustomer(customers[i]);
-		}
-	}
-}
 
 
 
 void findCusotmersByTime(SWIMMINGPOOL* customers, int& customercount)
 {
-	int time;
+	int id;
 	cout << "Choose the time you want to see the customers: ";
-	cin >> time;
+	cin >> id;
 	for (int i = 0; i < customercount; i++)
 	{
-		if (customers[i].time = time)
+		if (customers[i].id = id)
 		{
 			showCustomer(customers[i]);
 		}
@@ -129,9 +163,9 @@ void findCustomerMenu(SWIMMINGPOOL* customers, int& customercount)
 	char dayOfWeek[3];
 	cout << "Which option you want to use";
 	cin >> choose;
-	cout << "1. Find customer by the time";
+	cout << "1. Find customer by the id";
 	cout << "2. Find customer by the age";
-	cout << "3. Find customer by day of the week";
+	
 	switch (choose)
 	{
 	case 1:
@@ -141,9 +175,7 @@ void findCustomerMenu(SWIMMINGPOOL* customers, int& customercount)
 	case 2:
 		findCusotmersByAge(customers, customercount);
 		break;
-	case 3:
-		findCusotmersByDay(customers, customercount);
-		break;
+
 	}
 
 	
@@ -294,4 +326,5 @@ int main()
 	do {
 		menu = customersMenu(customers, customercount);
 	} while (menu);
+	
 }
