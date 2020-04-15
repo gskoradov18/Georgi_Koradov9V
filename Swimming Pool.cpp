@@ -2,13 +2,16 @@
 #include <string.h>
 using namespace std;
 
+
+
 struct SWIMMINGPOOL
 {
 	int age;
 	float time;
 	int id;
-	int prize=20;
+	int prize = 20;
 	char dayofweek[3];
+	
 
 
 };
@@ -29,14 +32,14 @@ void insertCustomer(SWIMMINGPOOL* customers, int& customercount)
 	customercount++;
 }
 
-void prizes(SWIMMINGPOOL* customers,int&customercount)
+int prizes(SWIMMINGPOOL* customers, int& customercount)
 {
-	if (customers[customercount].age>=60 or customers[customercount].age<=10)
+	if (customers[customercount].age >= 60 or customers[customercount].age <= 10)
 	{
-		customers[customercount].prize = 10;
+		customers[customercount].prize == 10;
 	}
 
-	
+	return customers[customercount].prize;
 
 }
 
@@ -52,6 +55,7 @@ void showCustomer(SWIMMINGPOOL customers)
 	cout << "Day of week: ";
 	cout << customers.dayofweek << endl;
 	cout << "Prize: ";
+
 	cout << customers.prize << endl;
 	cout << endl;
 
@@ -62,18 +66,90 @@ void showAllcustomers(SWIMMINGPOOL* customers, int& customercount)
 	if (customercount == 0)
 	{
 		cout << "There are no customers enterred "; cout << endl << endl;
+
 		insertCustomer(customers, customercount);
 	}
 	else
 	{
 		for (int i = 0; i < customercount; i++)
 		{
+
 			showCustomer(customers[i]);
+
 		}
 	}
 
 }
-int getOrderIndexById(SWIMMINGPOOL* customers, int& customercount, int id)
+void findCusotmersByAge(SWIMMINGPOOL* customers, int& customercount)
+{
+	int age;
+	cout << "Choose the age you want to see the customers: ";
+	cin >> age;
+	for (int i = 0; i < customercount; i++)
+	{
+		if (customers[i].age = age)
+		{
+			showCustomer(customers[i]);
+		}
+	}
+}
+void findCusotmersByDay(SWIMMINGPOOL* customers, int& customercount)
+{
+	char dayOfWeek[3];
+	cout << "Choose the day you want to see the customers: ";
+	cin >> dayOfWeek;
+	for (int i = 0; i < customercount; i++)
+	{
+		if (customers[i].dayofweek = dayOfWeek)
+		{
+			showCustomer(customers[i]);
+		}
+	}
+}
+
+
+
+void findCusotmersByTime(SWIMMINGPOOL* customers, int& customercount)
+{
+	int time;
+	cout << "Choose the time you want to see the customers: ";
+	cin >> time;
+	for (int i = 0; i < customercount; i++)
+	{
+		if (customers[i].time = time)
+		{
+			showCustomer(customers[i]);
+		}
+	}
+}
+
+void findCustomerMenu(SWIMMINGPOOL* customers, int& customercount)
+{
+	int age, time, choose;
+	char dayOfWeek[3];
+	cout << "Which option you want to use";
+	cin >> choose;
+	cout << "1. Find customer by the time";
+	cout << "2. Find customer by the age";
+	cout << "3. Find customer by day of the week";
+	switch (choose)
+	{
+	case 1:
+		findCusotmersByTime(customers, customercount);
+		break;
+
+	case 2:
+		findCusotmersByAge(customers, customercount);
+		break;
+	case 3:
+		findCusotmersByDay(customers, customercount);
+		break;
+	}
+
+	
+}
+
+int getCustomerIndexById(SWIMMINGPOOL* customers, int& customercount, int id)
 {
 	for (int i = 0; i < customercount; i++)
 	{
@@ -87,7 +163,7 @@ int getOrderIndexById(SWIMMINGPOOL* customers, int& customercount, int id)
 }
 void deleteCustomer(SWIMMINGPOOL* customers, int& customercount, int id)
 {
-	int index = getOrderIndexById(customers, customercount, id);
+	int index = getCustomerIndexById(customers, customercount, id);
 	for (int i = 0; i < customercount - 1; i++)
 	{
 		customers[i] = customers[i + 1];
@@ -106,7 +182,7 @@ void deleteID(SWIMMINGPOOL* customers, int& customercount)
 
 SWIMMINGPOOL getCustomer(SWIMMINGPOOL* customers, int& customercount, int id)
 {
-	int index = getOrderIndexById(customers, customercount, id);
+	int index = getCustomerIndexById(customers, customercount, id);
 	return customers[index];
 }
 void updateCustomer(SWIMMINGPOOL* customers, int& customercount, int index, SWIMMINGPOOL newcustomer)
@@ -170,7 +246,8 @@ bool customersMenu(SWIMMINGPOOL* customers, int& customercount)
 	cout << "2. Show all customers: " << endl;
 	cout << "3. Edit customer" << endl;
 	cout << "4. Delete customer" << endl;
-	cout << "5. Exit " << endl;
+	cout << "5. Find customers by creteria" << endl;
+	cout << "6. Exit " << endl;
 	cout << "Choose an option: ";
 	cin >> option;
 
@@ -193,6 +270,10 @@ bool customersMenu(SWIMMINGPOOL* customers, int& customercount)
 		break;
 
 	case 5:
+		findCustomerMenu(customers, customercount);
+		break;
+
+	case 6:
 		return false;
 		break;
 
