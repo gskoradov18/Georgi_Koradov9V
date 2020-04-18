@@ -2,26 +2,25 @@
 #include <string.h>
 using namespace std;
 
-
-
 struct SWIMMINGPOOL
 {
-	int age;
-	string name;
-	int time;
-	int id;
-	string dayofweek;
+	int age=0;
+	string FirstName=" ";
+	string LastName = " ";
+	int time=0;
+	int id=0;
+	string dayofweek=" ";
 	int prize = 5;
 
 };
 
 
-
-
 void insertCustomer(SWIMMINGPOOL* customers, int& customercount)
 {
-	cout << "Enter first name: ";
-	cin >> customers[customercount].name;
+	cout << "Enter First name: ";
+	cin >> customers[customercount].FirstName;
+	cout << "Enter Last name: ";
+	cin >> customers[customercount].LastName;
 	cout << "Enter age: "; cout;
 	cin >> customers[customercount].age;
 	cout << "Enter time: "; cout;
@@ -32,31 +31,103 @@ void insertCustomer(SWIMMINGPOOL* customers, int& customercount)
 	cin >> customers[customercount].dayofweek;
 	if (customers[customercount].dayofweek == "Sat" or customers[customercount].dayofweek == "Sun")
 	{
-		cout << "The pool is closed on Saturday and Sunday";
+		cout << "The pool is closed on Saturday and Sunday. ";
 	}
 	customercount++;
 }
 
-
-
 void showCustomer(SWIMMINGPOOL customers)
 {
-	cout << "Customer fisrt name: " << endl;
-	cout << customers.name << endl;
-	cout << "Customer age: ";
+	cout << "Customer's Full name: ";
+	cout << customers.FirstName <<" "<<customers.LastName<< endl;
+	cout << "Customer's age: ";
 	cout << customers.age << endl;
-	cout << "Customer time: ";
+	cout << "Customer's time: ";
 	cout << customers.time << endl;
-	cout << "Customer id: ";
+	cout << "Customer's id: ";
 	cout << customers.id << endl;
 	cout << "Day of week: ";
 	cout << customers.dayofweek << endl;
-	cout << "Prize is: ";
-	cout << customers.prize << endl;
 	cout << endl;
 
 }
 
+void showAllcustomers(SWIMMINGPOOL* customers, int& customercount)
+{
+	if (customercount == 0)
+	{
+		cout << "There are no customers enterred "; cout << "Please insert customer's info"; cout << endl << endl;
+
+		insertCustomer(customers, customercount);
+	}
+	else
+	{
+		for (int i = 0; i < customercount; i++)
+		{
+
+			showCustomer(customers[i]);
+
+		}
+	}
+
+}
+
+void editCusotmer(SWIMMINGPOOL* customers, int& customercount)
+{
+	int id;
+	int choose, newage, newtime;
+	char newday;
+	cout << "Enter id: ";
+	cin >> id;
+	cout << "1. Change age" << endl;
+	cout << "2. Cahnge time" << endl;
+
+	cout << "Choose an option: ";
+	cin >> choose;
+
+
+
+	switch (choose)
+	{
+	case 1:
+		cout << "Enter the new age: ";
+		cin >> newage;
+		customers[id].age = newage;
+		break;
+	case 2:
+		cout << "Enter the new time: ";
+		cin >> newtime;
+		customers[id].age = newtime;
+
+		break;
+
+
+	}
+
+}
+
+int getCustomerIndexById(SWIMMINGPOOL* customers, int& customercount, int id)
+{
+	for (int i = 0; i < customercount; i++)
+	{
+		if (customers[i].id == id)
+		{
+			return i;
+		}
+	}
+
+	return -1;
+}
+
+void deleteCustomer(SWIMMINGPOOL* customers, int& customercount, int id)
+{
+	int index = getCustomerIndexById(customers, customercount, id);
+	for (int i = 0; i < customercount - 1; i++)
+	{
+		customers[i] = customers[i + 1];
+	}
+	customercount--;
+}
 
 int sum(SWIMMINGPOOL* customers, int& customercount)
 {
@@ -77,9 +148,10 @@ void sumMenu(SWIMMINGPOOL* customers, int& customercount)
 {
 	int Sum = 0;
 	Sum = sum(customers, customercount);
-	cout << Sum;
+	cout <<" The prize for your time spent is: $"<< Sum;
 }
 
+/*
 void prizes(SWIMMINGPOOL* customers, int& customercount)
 {
 
@@ -95,69 +167,17 @@ void prizes(SWIMMINGPOOL* customers, int& customercount)
 		}
 
 	}
-
-
-
 }
+*/
 
 
 
-
-
-void showAllcustomers(SWIMMINGPOOL* customers, int& customercount)
-{
-	if (customercount == 0)
-	{
-		cout << "There are no customers enterred "; cout << endl << endl;
-
-		insertCustomer(customers, customercount);
-	}
-	else
-	{
-		for (int i = 0; i < customercount; i++)
-		{
-
-			showCustomer(customers[i]);
-
-		}
-	}
-
-}
-void findCusotmersByAge(SWIMMINGPOOL* customers, int& customercount)
-{
-	int age;
-	cout << "Choose the age you want to see the customers: ";
-	cin >> age;
-	for (int i = 0; i < customercount; i++)
-	{
-		if (customers[i].age = age)
-		{
-			showCustomer(customers[i]);
-		}
-	}
-}
-
-
-
-void findCusotmersByTime(SWIMMINGPOOL* customers, int& customercount)
-{
-	int time;
-	cout << "Choose the time you want to see the customers: ";
-	cin >> time;
-	for (int i = 0; i < customercount; i++)
-	{
-		if (customers[i].time = time)
-		{
-			showCustomer(customers[i]);
-		}
-	}
-}
-
+//presentation layer
 
 void findCusotmersByDay(SWIMMINGPOOL* customers, int& customercount)
 {
 	string day;
-	cout << "Choose the day you want to see the customers: ";
+	cout << "Enter day: ";
 	cin >> day;
 	for (int i = 0; i < customercount; i++)
 	{
@@ -168,21 +188,57 @@ void findCusotmersByDay(SWIMMINGPOOL* customers, int& customercount)
 	}
 }
 
+void findCusotmersByTime(SWIMMINGPOOL* customers, int& customercount)
+{
+	int time;
+	cout << "Enter time: ";
+	cin >> time;
+	for (int i = 0; i < customercount; i++)
+	{
+		if (customers[i].time = time)
+		{
+			showCustomer(customers[i]);
+		}
+	}
+}
+
+void findCusotmersByAge(SWIMMINGPOOL* customers, int& customercount)
+{
+	int age;
+	cout << "Enter age: ";
+	cin >> age;
+	for (int i = 0; i < customercount; i++)
+	{
+		if (customers[i].age = age)
+		{
+			showCustomer(customers[i]);
+		}
+	}
+}
+
+void deleteID(SWIMMINGPOOL* customers, int& customercount)
+{
+	int id;
+	cout << "Enter the id of the customer you want to delete: ";
+	cin >> id;
+	deleteCustomer(customers, customercount, id);
+}
+
 void findCustomerMenu(SWIMMINGPOOL* customers, int& customercount)
 {
 	int age, time, choose;
 	char dayOfWeek[3];
-	cout << "Which option you want to use" << endl;
-	cin >> choose;
+	cout << endl << endl;
+	cout << "Which option you want to use" << endl << endl;
 	cout << "1. Find customer by the id" << endl;
-	cout << "2. Find customer by the age" << endl;
+	cout << "2. Find customer by the age" << endl<<endl;
+	cout << "Your choice: "; cin >> choose;
 
 	switch (choose)
 	{
 	case 1:
 		findCusotmersByTime(customers, customercount);
 		break;
-
 	case 2:
 		findCusotmersByAge(customers, customercount);
 		break;
@@ -194,88 +250,17 @@ void findCustomerMenu(SWIMMINGPOOL* customers, int& customercount)
 
 }
 
-int getCustomerIndexById(SWIMMINGPOOL* customers, int& customercount, int id)
-{
-	for (int i = 0; i < customercount; i++)
-	{
-		if (customers[i].id == id) // check 
-		{
-			return i;
-		}
-	}
-
-	return -1;
-}
-void deleteCustomer(SWIMMINGPOOL* customers, int& customercount, int id)
-{
-	int index = getCustomerIndexById(customers, customercount, id);
-	for (int i = 0; i < customercount - 1; i++)
-	{
-		customers[i] = customers[i + 1];
-	}
-	customercount--;
-}
-
-void deleteID(SWIMMINGPOOL* customers, int& customercount)
-{
-	int id;
-	cout << "Enter the id on which position you want to delete a customer: ";
-	cin >> id;
-	deleteCustomer(customers, customercount, id);
-}
-
-
-
-
-void editCusotmer(SWIMMINGPOOL* customers, int& customercount)
-{
-	int id;
-	int choose, newage, newtime;
-	char newday;
-	cout << "Enter id: ";
-	cin >> id;
-	cout << "1. Change age: " << endl;
-	cout << "2. Cahnge time" << endl;
-
-	cout << "Choose an option: ";
-	cin >> choose;
-
-
-
-	switch (choose)
-	{
-	case 1:
-		cout << "Enter the new age:";
-		cin >> newage;
-		customers[id].age = newage;
-		break;
-	case 2:
-		cout << "Enter the new time:";
-		cin >> newtime;
-		customers[id].age = newtime;
-
-		break;
-
-
-	}
-
-}
-
-
-
-
-
 bool customersMenu(SWIMMINGPOOL* customers, int& customercount)
 {
 	cout << endl << endl;
 	int option;
-	cout << "1. Insert customer: " << endl;
-	cout << "2. Show all customers: " << endl;
+	cout << "1. Insert customer" << endl;
+	cout << "2. Show all customers" << endl;
 	cout << "3. Edit customer" << endl;
 	cout << "4. Delete customer" << endl;
 	cout << "5. Find customers by creteria" << endl;
-	cout << "6. The sum is: " << endl;
-	cout << "7. Exit " << endl;
+	cout << "6. Prize" << endl;
+	cout << "7. Exit" << endl<<endl;
 	cout << "Choose an option: ";
 	cin >> option;
 
@@ -306,7 +291,7 @@ bool customersMenu(SWIMMINGPOOL* customers, int& customercount)
 		break;
 
 	case 7:
-		cout << "Goodbye user";
+		cout << "Have a nice day!";
 		return false;
 
 		break;
@@ -314,9 +299,6 @@ bool customersMenu(SWIMMINGPOOL* customers, int& customercount)
 	}
 	return true;
 }
-
-
-
 
 int main()
 {
