@@ -56,7 +56,7 @@ void showAllcustomers(SWIMMINGPOOL* customers, int& customercount)
 {
 	if (customercount == 0)
 	{
-		cout << "There are no customers enterred "; cout << "Please insert customer's info"; cout << endl << endl;
+		cout << "There are no customers enterred " << endl; cout << "Please insert customer's info"; cout << endl << endl;
 
 		insertCustomer(customers, customercount);
 	}
@@ -129,11 +129,29 @@ void deleteCustomer(SWIMMINGPOOL* customers, int& customercount, int id)
 	customercount--;
 }
 
+void prizes(SWIMMINGPOOL* customers, int& customercount)
+{
+
+	for (int i = 0; i < customercount; i++)
+	{
+		if (customers[i].age >= 60 or customers[i].age <= 10)
+		{
+			customers[i].prize = 10;
+		}
+		else
+		{
+			customers[i].prize = 20;
+		}
+
+	}
+}
+
 int sum(SWIMMINGPOOL* customers, int& customercount)
 {
 	int sum = 0;
 	int timeIS;
 
+	prizes(customers, customercount);
 
 	for (int i = 0; i < customercount; i++)
 	{
@@ -151,24 +169,6 @@ void sumMenu(SWIMMINGPOOL* customers, int& customercount)
 	cout <<" The prize for your time spent is: $"<< Sum;
 }
 
-/*
-void prizes(SWIMMINGPOOL* customers, int& customercount)
-{
-
-	for (int i = 0; i < customercount; i++)
-	{
-		if (customers[i].age >= 60 or customers[i].age <= 10)
-		{
-			customers[i].prize = 10;
-		}
-		else
-		{
-			customers[i].prize = 20;
-		}
-
-	}
-}
-*/
 
 
 
@@ -302,7 +302,9 @@ bool customersMenu(SWIMMINGPOOL* customers, int& customercount)
 
 int main()
 {
-	cout << "Hello user!";
+	cout << "*************"<<endl;
+	cout << "Hello user!"<<endl;
+	cout << "************"<<endl;
 	int customercount = 0;
 	bool menu = true;
 	SWIMMINGPOOL customers[100];
