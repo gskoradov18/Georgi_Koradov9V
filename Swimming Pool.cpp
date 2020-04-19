@@ -4,12 +4,12 @@ using namespace std;
 
 struct SWIMMINGPOOL
 {
-	int age=0;
-	string FirstName=" ";
+	int age = 0;
+	string FirstName = " ";
 	string LastName = " ";
-	int time=0;
-	int id=0;
-	string dayofweek=" ";
+	int time = 0;
+	int id = 0;
+	string dayofweek = " ";
 	int prize = 5;
 
 };
@@ -39,7 +39,7 @@ void insertCustomer(SWIMMINGPOOL* customers, int& customercount)
 void showCustomer(SWIMMINGPOOL customers)
 {
 	cout << "Customer's Full name: ";
-	cout << customers.FirstName <<" "<<customers.LastName<< endl;
+	cout << customers.FirstName << " " << customers.LastName << endl;
 	cout << "Customer's age: ";
 	cout << customers.age << endl;
 	cout << "Customer's time: ";
@@ -166,7 +166,7 @@ void sumMenu(SWIMMINGPOOL* customers, int& customercount)
 {
 	int Sum = 0;
 	Sum = sum(customers, customercount);
-	cout <<" The prize for your time spent is: $"<< Sum;
+	cout << " The prize for your time spent is: $" << Sum;
 }
 
 
@@ -230,9 +230,11 @@ void findCustomerMenu(SWIMMINGPOOL* customers, int& customercount)
 	char dayOfWeek[3];
 	cout << endl << endl;
 	cout << "Which option you want to use" << endl << endl;
-	cout << "1. Find customer by the id" << endl;
-	cout << "2. Find customer by the age" << endl<<endl;
+	cout << "1. Find customer by the time" << endl;
+	cout << "2. Find customer by the age" << endl;
+	cout << "2. Find customer by the day" << endl << endl;
 	cout << "Your choice: "; cin >> choose;
+
 
 	switch (choose)
 	{
@@ -260,7 +262,7 @@ bool customersMenu(SWIMMINGPOOL* customers, int& customercount)
 	cout << "4. Delete customer" << endl;
 	cout << "5. Find customers by creteria" << endl;
 	cout << "6. Prize" << endl;
-	cout << "7. Exit" << endl<<endl;
+	cout << "7. Exit" << endl << endl;
 	cout << "Choose an option: ";
 	cin >> option;
 
@@ -302,9 +304,9 @@ bool customersMenu(SWIMMINGPOOL* customers, int& customercount)
 
 int main()
 {
-	cout << "*************"<<endl;
-	cout << "Hello user!"<<endl;
-	cout << "************"<<endl;
+	cout << "************" << endl;
+	cout << "Hello user!" << endl;
+	cout << "***********" << endl;
 	int customercount = 0;
 	bool menu = true;
 	SWIMMINGPOOL customers[100];
