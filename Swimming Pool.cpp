@@ -300,7 +300,7 @@ bool customersMenu(SWIMMINGPOOL* customers, int& customercount)
 
 	}
 	return true;
-}
+}//test
 
 int main()
 {
