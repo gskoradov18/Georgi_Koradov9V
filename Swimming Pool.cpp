@@ -5,7 +5,7 @@ using namespace std;
 struct SWIMMINGPOOL
 {
 	int age = 0;
-	string FirstName = " ";
+	string FirstName = "";
 	string LastName = " ";
 	int time = 0;
 	int id = 0;
@@ -21,13 +21,13 @@ void insertCustomer(SWIMMINGPOOL* customers, int& customercount)
 	cin >> customers[customercount].FirstName;
 	cout << "Enter Last name: ";
 	cin >> customers[customercount].LastName;
-	cout << "Enter age: "; cout;
+	cout << "Enter age: ";
 	cin >> customers[customercount].age;
-	cout << "Enter time: "; cout;
+	cout << "Enter time: ";
 	cin >> customers[customercount].time;
-	cout << "Enter id: "; cout;
+	cout << "Enter id: ";
 	cin >> customers[customercount].id;
-	cout << "Enter day: "; cout;
+	cout << "Enter day: ";
 	cin >> customers[customercount].dayofweek;
 	if (customers[customercount].dayofweek == "Sat" or customers[customercount].dayofweek == "Sun")
 	{
@@ -72,10 +72,15 @@ void showAllcustomers(SWIMMINGPOOL* customers, int& customercount)
 
 }
 
+// int generateId()
+// int getIndexById()
+
 void editCusotmer(SWIMMINGPOOL* customers, int& customercount)
 {
 	int id;
-	int choose, newage, newtime;
+	int choice;
+
+	int newage, newtime;
 	char newday;
 	cout << "Enter id: ";
 	cin >> id;
@@ -83,11 +88,11 @@ void editCusotmer(SWIMMINGPOOL* customers, int& customercount)
 	cout << "2. Cahnge time" << endl;
 
 	cout << "Choose an option: ";
-	cin >> choose;
+	cin >> choice;
 
 
 
-	switch (choose)
+	switch (choice)
 	{
 	case 1:
 		cout << "Enter the new age: ";
@@ -307,10 +312,13 @@ int main()
 	cout << "************" << endl;
 	cout << "Hello user!" << endl;
 	cout << "***********" << endl;
+
 	int customercount = 0;
 	bool menu = true;
 	SWIMMINGPOOL customers[100];
+
 	menu = customersMenu(customers, customercount);
+
 	do {
 		menu = customersMenu(customers, customercount);
 	} while (menu);
