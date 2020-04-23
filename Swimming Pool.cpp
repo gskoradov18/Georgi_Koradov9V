@@ -78,11 +78,6 @@ SWIMMINGPOOL getCustomer(SWIMMINGPOOL* customers, int& customercount, int id)
 	return customers[index];
 }
 
-// int generateId()
-// int getIndexById()
-
-
-
 int getCustomerIndexById(SWIMMINGPOOL* customers, int& customercount, int id)
 {
 	for (int i = 0; i < customercount; i++)
