@@ -71,13 +71,6 @@ void showAllcustomers(SWIMMINGPOOL* customers, int& customercount)
 	}
 
 }
-
-SWIMMINGPOOL getCustomer(SWIMMINGPOOL* customers, int& customercount, int id)
-{
-	int index = getCustomerIndexById(customers, customercount, id);
-	return customers[index];
-}
-
 int getCustomerIndexById(SWIMMINGPOOL* customers, int& customercount, int id)
 {
 	for (int i = 0; i < customercount; i++)
@@ -90,6 +83,13 @@ int getCustomerIndexById(SWIMMINGPOOL* customers, int& customercount, int id)
 
 	return -1;
 }
+SWIMMINGPOOL getCustomer(SWIMMINGPOOL* customers, int& customercount, int id)
+{
+	int index = getCustomerIndexById(customers, customercount, id);
+	return customers[index];
+}
+
+
 
 void updateCustomer(SWIMMINGPOOL* orders, SWIMMINGPOOL newOrder, int& customercount, int& maxId) {
 	int index = getCustomerIndexById(orders, customercount, maxId);
@@ -101,7 +101,7 @@ void editCusotmer(SWIMMINGPOOL* customers, int& customercount)
 	int id;
 	int choice;
 
-	getCustomer(customers, customercount, id);
+	
 
 	cout << "Enter id: ";
 	cin >> id;
@@ -112,7 +112,7 @@ void editCusotmer(SWIMMINGPOOL* customers, int& customercount)
 
 
 
-	switch (choice)
+	/*switch (choice)
 	{
 	case 1:
 		cout << "Enter the new age: ";
@@ -127,7 +127,7 @@ void editCusotmer(SWIMMINGPOOL* customers, int& customercount)
 
 
 	}
-
+	*/
 }
 
 void deleteCustomer(SWIMMINGPOOL* customers, int& customercount, int id)
@@ -183,7 +183,7 @@ void sumMenu(SWIMMINGPOOL* customers, int& customercount)
 
 
 
-//presentation layer
+//presentation layerzz
 
 void findCusotmersByDay(SWIMMINGPOOL* customers, int& customercount)
 {
