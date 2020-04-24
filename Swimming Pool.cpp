@@ -275,6 +275,7 @@ bool customersMenu(SWIMMINGPOOL* customers, int& customercount)
 	cout << "6. Prize" << endl;
 	cout << "7. Exit" << endl << endl;
 	cout << "Choose an option: ";
+	
 	cin >> option;
 
 	switch (option)
@@ -308,6 +309,7 @@ bool customersMenu(SWIMMINGPOOL* customers, int& customercount)
 		return false;
 
 		break;
+	default:cout << "Incorrect input. Choose an avaliable option from the menu" << endl;
 
 	}
 	return true;
