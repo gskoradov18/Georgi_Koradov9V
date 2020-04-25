@@ -25,8 +25,7 @@ void insertCustomer(SWIMMINGPOOL* customers, int& customercount)
 	cin >> customers[customercount].age;
 	cout << "Enter time: ";
 	cin >> customers[customercount].time;
-	cout << "Enter id: ";
-	cin >> customers[customercount].id;
+	customers[customercount].id = customercount;
 	cout << "Enter day: ";
 	cin >> customers[customercount].dayofweek;
 	if (customers[customercount].dayofweek == "Sat" or customers[customercount].dayofweek == "Sun")
@@ -91,17 +90,15 @@ SWIMMINGPOOL getCustomer(SWIMMINGPOOL* customers, int& customercount, int id)
 
 
 
-void updateCustomer(SWIMMINGPOOL* orders, SWIMMINGPOOL newOrder, int& customercount, int& maxId) {
-	int index = getCustomerIndexById(orders, customercount, maxId);
+void updateCustomer(SWIMMINGPOOL* orders, SWIMMINGPOOL newOrder, int& customercount, int id) {
+	int index = getCustomerIndexById(orders, customercount, id);
 	orders[index] = newOrder;
 }
 
-void editCusotmer(SWIMMINGPOOL* customers, int& customercount)
+void editCusotmer(SWIMMINGPOOL* customers, int& customercount, int& maxId)
 {
 	int id;
 	int choice;
-
-	
 
 	cout << "Enter id: ";
 	cin >> id;
@@ -110,24 +107,25 @@ void editCusotmer(SWIMMINGPOOL* customers, int& customercount)
 	cout << "Choose an option: ";
 	cin >> choice;
 
+	SWIMMINGPOOL customer = getCustomer(customers, customercount, id);
 
 
-	/*switch (choice)
+	switch (choice)
 	{
 	case 1:
 		cout << "Enter the new age: ";
-		cin >> customers->age;
-		updateCustomer(orders, newOrder, customercount, maxId);
+		cin >> customer.age;
+		updateCustomer(customers, customer, customercount, id);
 		break;
 	case 2:
 		cout << "Enter the new time: ";
 		cin >> customers->time;
-		updateCustomer(orders, newOrder, customercount, maxId);
+		updateCustomer(customers, customer, customercount, id);
 		break;
 
 
 	}
-	*/
+
 }
 
 void deleteCustomer(SWIMMINGPOOL* customers, int& customercount, int id)
@@ -263,7 +261,7 @@ void findCustomerMenu(SWIMMINGPOOL* customers, int& customercount)
 
 }
 
-bool customersMenu(SWIMMINGPOOL* customers, int& customercount)
+bool customersMenu(SWIMMINGPOOL* customers, int& customercount, int& maxId)
 {
 	cout << endl << endl;
 	int option;
@@ -275,7 +273,7 @@ bool customersMenu(SWIMMINGPOOL* customers, int& customercount)
 	cout << "6. Prize" << endl;
 	cout << "7. Exit" << endl << endl;
 	cout << "Choose an option: ";
-	
+
 	cin >> option;
 
 	switch (option)
@@ -289,7 +287,7 @@ bool customersMenu(SWIMMINGPOOL* customers, int& customercount)
 
 	case 3:
 
-		editCusotmer(customers, customercount);
+		editCusotmer(customers, customercount, maxId);
 		break;
 
 	case 4:
@@ -313,7 +311,7 @@ bool customersMenu(SWIMMINGPOOL* customers, int& customercount)
 
 	}
 	return true;
-}//test
+}
 
 int main()
 {
@@ -322,13 +320,14 @@ int main()
 	cout << "***********" << endl;
 
 	int customercount = 0;
+	int maxId = 0;
 	bool menu = true;
 	SWIMMINGPOOL customers[100];
 
-	menu = customersMenu(customers, customercount);
+	menu = customersMenu(customers, customercount, maxId);
 
 	do {
-		menu = customersMenu(customers, customercount);
+		menu = customersMenu(customers, customercount, maxId);
 	} while (menu);
 
 }
