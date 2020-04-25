@@ -305,7 +305,7 @@ bool customersMenu(SWIMMINGPOOL* customers, int& customercount, int& maxId)
 	cout << "3. Edit customer" << endl;
 	cout << "4. Delete customer" << endl;
 	cout << "5. Find customers by creteria" << endl;
-	cout << "6. Prize" << endl;
+	cout << "6. Price" << endl;
 	cout << "7. Exit" << endl << endl;
 	cout << "Choose an option: ";
 
