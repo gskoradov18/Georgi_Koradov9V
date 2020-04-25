@@ -25,14 +25,28 @@ void insertCustomer(SWIMMINGPOOL* customers, int& customercount)
 	cin >> customers[customercount].age;
 	cout << "Enter time: ";
 	cin >> customers[customercount].time;
-	customers[customercount].id = customercount;
+
 	cout << "Enter day: ";
 	cin >> customers[customercount].dayofweek;
-	if (customers[customercount].dayofweek == "Sat" or customers[customercount].dayofweek == "Sun")
+	if (customers[customercount].dayofweek == "sat" or customers[customercount].dayofweek == "sun")
 	{
 		cout << "The pool is closed on Saturday and Sunday. ";
 	}
+	if (customers[customercount].dayofweek != "mon" and customers[customercount].dayofweek != "tue" and customers[customercount].dayofweek != "wed" and
+		customers[customercount].dayofweek != "thr" and customers[customercount].dayofweek != "fri" and customers[customercount].dayofweek != "sun"
+		and customers[customercount].dayofweek != "sat")
+	{
+		cout << "You have entered an incorrect day. ";
+	}
 	customercount++;
+}
+
+void creatCusotmer(SWIMMINGPOOL* customers, int& customercount, int& maxId, SWIMMINGPOOL newCusotmer)
+ {
+	newCusotmer.id = maxId;
+	customers[customercount] = newCusotmer;
+	customercount++;
+	maxId++;
 }
 
 void showCustomer(SWIMMINGPOOL customers)
