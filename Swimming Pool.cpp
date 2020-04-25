@@ -10,10 +10,17 @@ struct SWIMMINGPOOL
 	int time = 0;
 	int id = 0;
 	string dayofweek = " ";
-	int prize = 5;
+	int prize;
 
 };
 
+void Welcoming()
+{
+	cout << endl;
+	cout << "Hello user!" << endl;
+	cout << "Welcome to our project called SWIMMINGPOOL!" << endl;
+	cout << "I hope you are having a wonderful day!" << endl << endl;
+}
 
 void insertCustomer(SWIMMINGPOOL* customers, int& customercount)
 {
@@ -41,7 +48,7 @@ void insertCustomer(SWIMMINGPOOL* customers, int& customercount)
 	customercount++;
 }
 
-void creatCusotmer(SWIMMINGPOOL* customers, int& customercount, int& maxId, SWIMMINGPOOL newCusotmer)
+void createCustomer(SWIMMINGPOOL* customers, int& customercount, int& maxId, SWIMMINGPOOL newCusotmer)
  {
 	newCusotmer.id = maxId;
 	customers[customercount] = newCusotmer;
@@ -84,6 +91,7 @@ void showAllcustomers(SWIMMINGPOOL* customers, int& customercount)
 	}
 
 }
+
 int getCustomerIndexById(SWIMMINGPOOL* customers, int& customercount, int id)
 {
 	for (int i = 0; i < customercount; i++)
@@ -96,6 +104,7 @@ int getCustomerIndexById(SWIMMINGPOOL* customers, int& customercount, int id)
 
 	return -1;
 }
+
 SWIMMINGPOOL getCustomer(SWIMMINGPOOL* customers, int& customercount, int id)
 {
 	int index = getCustomerIndexById(customers, customercount, id);
@@ -104,9 +113,9 @@ SWIMMINGPOOL getCustomer(SWIMMINGPOOL* customers, int& customercount, int id)
 
 
 
-void updateCustomer(SWIMMINGPOOL* orders, SWIMMINGPOOL newOrder, int& customercount, int id) {
-	int index = getCustomerIndexById(orders, customercount, id);
-	orders[index] = newOrder;
+void updateCustomer(SWIMMINGPOOL* customers, SWIMMINGPOOL newCustomer, int& customercount, int id) {
+	int index = getCustomerIndexById(customers, customercount, id);
+	customers[index] = newCustomer;
 }
 
 void editCusotmer(SWIMMINGPOOL* customers, int& customercount, int& maxId)
@@ -152,7 +161,7 @@ void deleteCustomer(SWIMMINGPOOL* customers, int& customercount, int id)
 	customercount--;
 }
 
-void prizes(SWIMMINGPOOL* customers, int& customercount)
+void Prices(SWIMMINGPOOL* customers, int& customercount)
 {
 
 	for (int i = 0; i < customercount; i++)
@@ -174,7 +183,7 @@ int sum(SWIMMINGPOOL* customers, int& customercount)
 	int sum = 0;
 	int timeIS;
 
-	prizes(customers, customercount);
+	Prices(customers, customercount);
 
 	for (int i = 0; i < customercount; i++)
 	{
@@ -185,7 +194,7 @@ int sum(SWIMMINGPOOL* customers, int& customercount)
 	return sum;
 }
 
-void sumMenu(SWIMMINGPOOL* customers, int& customercount)
+void PriceMenu(SWIMMINGPOOL* customers, int& customercount)
 {
 	int Sum = 0;
 	Sum = sum(customers, customercount);
@@ -208,6 +217,10 @@ void findCusotmersByDay(SWIMMINGPOOL* customers, int& customercount)
 		{
 			showCustomer(customers[i]);
 		}
+		else
+		{
+			cout << "There is no customer by this creteria";
+		}
 	}
 }
 
@@ -222,6 +235,10 @@ void findCusotmersByTime(SWIMMINGPOOL* customers, int& customercount)
 		{
 			showCustomer(customers[i]);
 		}
+		else
+		{
+			cout << "There is no customer by this creteria";
+		}
 	}
 }
 
@@ -235,6 +252,10 @@ void findCusotmersByAge(SWIMMINGPOOL* customers, int& customercount)
 		if (customers[i].age = age)
 		{
 			showCustomer(customers[i]);
+		}
+		else
+		{
+			cout << "There is no customer by this creteria";
 		}
 	}
 }
@@ -255,7 +276,7 @@ void findCustomerMenu(SWIMMINGPOOL* customers, int& customercount)
 	cout << "Which option you want to use" << endl << endl;
 	cout << "1. Find customer by the time" << endl;
 	cout << "2. Find customer by the age" << endl;
-	cout << "2. Find customer by the day" << endl << endl;
+	cout << "3. Find customer by the day" << endl << endl;
 	cout << "Your choice: "; cin >> choose;
 
 
@@ -313,7 +334,7 @@ bool customersMenu(SWIMMINGPOOL* customers, int& customercount, int& maxId)
 		break;
 	case 6:
 
-		sumMenu(customers, customercount);
+		PriceMenu(customers, customercount);
 		break;
 
 	case 7:
@@ -329,10 +350,7 @@ bool customersMenu(SWIMMINGPOOL* customers, int& customercount, int& maxId)
 
 int main()
 {
-	cout << "************" << endl;
-	cout << "Hello user!" << endl;
-	cout << "***********" << endl;
-
+	Welcoming();
 	int customercount = 0;
 	int maxId = 0;
 	bool menu = true;
