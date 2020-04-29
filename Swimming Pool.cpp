@@ -14,14 +14,6 @@ struct SWIMMINGPOOL
 
 };
 
-void Welcoming()
-{
-	cout << endl;
-	cout << "Hello user!" << endl;
-	cout << "Welcome to our project called SWIMMING POOL!" << endl;
-	cout << "I hope you are having a wonderful day!" << endl << endl;
-}
-
 void insertCustomer(SWIMMINGPOOL* customers, int& customercount)
 {
 	cout << "Enter First name: ";
@@ -102,61 +94,9 @@ SWIMMINGPOOL getCustomer(SWIMMINGPOOL* customers, int& customercount, int id)
 	return customers[index];
 }
 
-
-
 void updateCustomer(SWIMMINGPOOL* customers, SWIMMINGPOOL newCustomer, int& customercount, int id) {
 	int index = getCustomerIndexById(customers, customercount, id);
 	customers[index] = newCustomer;
-}
-
-void editCusotmer(SWIMMINGPOOL* customers, int& customercount, int& maxId)
-{
-	int id;
-	int choice;
-	cout << endl;
-	showAllcustomers(customers, customercount);
-	cout << "Enter id: ";
-	cin >> id; 
-	cout << endl;
-
-	cout << "1. Change age" << endl;
-	cout << "2. Change time" << endl;
-	cout << "3. Change name" << endl;
-	cout << "4. Change day of week" << endl<<endl;
-	cout << "Choose an option: ";
-	cin >> choice;
-
-	SWIMMINGPOOL customer = getCustomer(customers, customercount, id);
-
-
-	switch (choice)
-	{
-	case 1:
-		cout << "Enter the new age: ";
-		cin >> customer.age;
-		updateCustomer(customers, customer, customercount, id);
-		break;
-	case 2:
-		cout << "Enter the new time (round hours only): ";
-		cin >> customers->time;
-		updateCustomer(customers, customer, customercount, id);
-		break;
-	case 3:
-		cout << "Enter new name: ";
-		cin >> customers->FirstName >> customer.LastName;
-		updateCustomer(customers, customer, customercount, id);
-		break;
-	case 4:
-		cout << "Enter new Day of week (the first three letters)(small letters only): ";
-		cin >> customers->dayofweek;
-		updateCustomer(customers, customer, customercount, id);
-		break;
-	default: cout << "Incorrect Input";
-		break;
-
-
-	}
-
 }
 
 void deleteCustomer(SWIMMINGPOOL* customers, int& customercount, int id)
@@ -202,23 +142,19 @@ int PriceCalculator(SWIMMINGPOOL* customers, int& customercount)
 	return sum;
 }
 
-void PriceMenu(SWIMMINGPOOL* customers, int& customercount)
-{
-	int Sum = 0;
-	Sum = PriceCalculator(customers, customercount);
-	cout << " The income for the day is: $" << Sum;
-}
 
 
 
 
-//presentation layerzz
+
+//presentation layer
 
 void findCusotmersByDay(SWIMMINGPOOL* customers, int& customercount)
 {
 	string day;
 	cout << "Enter day (in small letters): ";
 	cin >> day;
+	cout << endl;
 	for (int i = 0; i < customercount; i++)
 	{
 		if (customers[i].dayofweek == day)
@@ -237,6 +173,7 @@ void findCusotmersByTime(SWIMMINGPOOL* customers, int& customercount)
 	int time;
 	cout << "Enter time: ";
 	cin >> time;
+	cout << endl;
 	for (int i = 0; i < customercount; i++)
 	{
 		if (customers[i].time = time)
@@ -255,6 +192,7 @@ void findCusotmersByAge(SWIMMINGPOOL* customers, int& customercount)
 	int age;
 	cout << "Enter age: ";
 	cin >> age;
+	cout << endl;
 	for (int i = 0; i < customercount; i++)
 	{
 		if (customers[i].age = age)
@@ -304,6 +242,63 @@ void findCustomerMenu(SWIMMINGPOOL* customers, int& customercount)
 
 }
 
+void PriceMenu(SWIMMINGPOOL* customers, int& customercount)
+{
+	int Sum = 0;
+	Sum = PriceCalculator(customers, customercount);
+	cout << " The income for the day is: $" << Sum;
+}
+
+void editCusotmerMenu(SWIMMINGPOOL* customers, int& customercount, int& maxId)
+{
+	int id;
+	int choice;
+	cout << endl;
+	showAllcustomers(customers, customercount);
+	cout << "Enter id: ";
+	cin >> id;
+	cout << endl;
+
+	cout << "1. Change age" << endl;
+	cout << "2. Change time" << endl;
+	cout << "3. Change name" << endl;
+	cout << "4. Change day of week" << endl << endl;
+	cout << "Choose an option: ";
+	cin >> choice;
+
+	SWIMMINGPOOL customer = getCustomer(customers, customercount, id);
+
+
+	switch (choice)
+	{
+	case 1:
+		cout << "Enter the new age: ";
+		cin >> customer.age;
+		updateCustomer(customers, customer, customercount, id);
+		break;
+	case 2:
+		cout << "Enter the new time (round hours only): ";
+		cin >> customer.time;
+		updateCustomer(customers, customer, customercount, id);
+		break;
+	case 3:
+		cout << "Enter new name: ";
+		cin >> customer.FirstName >> customer.LastName;
+		updateCustomer(customers, customer, customercount, id);
+		break;
+	case 4:
+		cout << "Enter new Day of week (the first three letters)(small letters only): ";
+		cin >> customer.dayofweek;
+		updateCustomer(customers, customer, customercount, id);
+		break;
+	default: cout << "Incorrect Input";
+		break;
+
+
+	}
+
+}
+
 bool customersMenu(SWIMMINGPOOL* customers, int& customercount, int& maxId,bool &flag)
 {	
 	cout << endl << endl;
@@ -335,7 +330,7 @@ bool customersMenu(SWIMMINGPOOL* customers, int& customercount, int& maxId,bool 
 
 	case 3:
 		if (flag == true) {
-			editCusotmer(customers, customercount, maxId);
+			editCusotmerMenu(customers, customercount, maxId);
 		}
 		else { cout << endl; cout << "incorrect input"; }
 		break;
@@ -369,6 +364,14 @@ bool customersMenu(SWIMMINGPOOL* customers, int& customercount, int& maxId,bool 
 
 	}
 	return true;
+}
+
+void Welcoming()
+{
+	cout << endl;
+	cout << "Hello user!" << endl;
+	cout << "Welcome to our project called SWIMMING POOL!" << endl;
+	cout << "I hope you are having a wonderful day!" << endl << endl;
 }
 
 int main()
