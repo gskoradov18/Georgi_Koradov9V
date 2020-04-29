@@ -246,7 +246,7 @@ void PriceMenu(SWIMMINGPOOL* customers, int& customercount)
 {
 	int Sum = 0;
 	Sum = PriceCalculator(customers, customercount);
-	cout << " The income for the day is: $" << Sum;
+	cout << " The income for the week is: $" << Sum;
 }
 
 void editCusotmerMenu(SWIMMINGPOOL* customers, int& customercount, int& maxId)
