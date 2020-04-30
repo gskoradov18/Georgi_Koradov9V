@@ -35,19 +35,21 @@ void insertCustomer(SWIMMINGPOOL* customers, int& customercount, int& maxId)
 
 	while (!(cin >> newCustomer.age))
 	{
-		cout << "You have enterd an incorrect age: " << endl;
+		cout << endl;
+		cout << "You have enterd an incorrect age " << endl;
 		cin.clear();
 		cin.ignore(123, '\n');
-		cout << "Enter a correct age: " << endl;
+		cout << "Enter a correct age: ";
 
 	}
 	cout << "Enter time (round hours only): ";
 	while (!(cin >> newCustomer.time))
 	{
-		cout << "You have enterd an incorrect time: " << endl;
+		cout << endl;
+		cout << "You have enterd an incorrect time " << endl;
 		cin.clear();
 		cin.ignore(123, '\n');
-		cout << "Enter a correct time: " << endl;
+		cout << "Enter a correct time: ";
 
 	}
 
@@ -63,14 +65,15 @@ void insertCustomer(SWIMMINGPOOL* customers, int& customercount, int& maxId)
 			cout << "The pool is closed on Saturday and Sunday. ";
 			cin.clear();
 			cin.ignore(123, '\n');
-			cout << "Enter working day: " << endl;
+			cout << "Enter working day: ";
 		}
 		else
 		{
-			cout << "You have enterd an incorrect day: " << endl;
+			cout << endl;
+			cout << "You have enterd an incorrect day " << endl;
 			cin.clear();
 			cin.ignore(123, '\n');
-			cout << "Enter a correct day: " << endl;
+			cout << "Enter a correct day: ";
 		}
 
 
@@ -81,9 +84,6 @@ void insertCustomer(SWIMMINGPOOL* customers, int& customercount, int& maxId)
 
 	createCustomer(customers, customercount, maxId, newCustomer);
 }
-
-
-
 
 //function for showing only one customer
 void showCustomer(SWIMMINGPOOL customers)
@@ -190,7 +190,8 @@ int PriceCalculator(SWIMMINGPOOL* customers, int& customercount)
 
 
 
-//////////////////////////////////presentation layer
+//////////////////////////////////presentation layer////////////////////////////////////////////
+
 
 
 //functions for finding customers by createria
@@ -368,8 +369,18 @@ bool customersMenu(SWIMMINGPOOL* customers, int& customercount, int& maxId, bool
 	cout << "6. Price" << endl;
 	cout << "7. Exit" << endl << endl;
 	cout << "Choose an option: ";
-	cin >> option;
 
+
+	while (!(cin>>option))
+	{
+		cin >> option;
+		cout << endl;
+		cout << "Incorrect input!" << endl;
+		cin.clear();
+		cin.ignore(123, '\n');
+		cout << "Enter a correct number:";
+	};
+	
 	switch (option)
 	{
 	case 1:
@@ -380,34 +391,34 @@ bool customersMenu(SWIMMINGPOOL* customers, int& customercount, int& maxId, bool
 		if (flag == true) {
 			showAllcustomers(customers, customercount);
 		}
-		else { cout << endl; cout << "incorrect input."; }
+		else { cout << endl; cout << "You have to insert the customer first :)"; }
 		break;
 
 	case 3:
 		if (flag == true) {
 			editCusotmerMenu(customers, customercount, maxId);
 		}
-		else { cout << endl; cout << "incorrect input"; }
+		else { cout << endl; cout << "You have to insert the customer first :)"; }
 		break;
 
 	case 4:
 		if (flag == true) {
 			deleteCustomerByID(customers, customercount);
 		}
-		else { cout << endl; cout << "incorrect input"; }
+		else { cout << endl; cout << "You have to insert the customer first :)"; }
 		break;
 
 	case 5:
 		if (flag == true) {
 			findCustomerMenu(customers, customercount);
 		}
-		else { cout << endl; cout << "incorrect input"; }
+		else { cout << endl; cout << "You have to insert the customer first :)"; }
 		break;
 	case 6:
 		if (flag == true) {
 			PriceMenu(customers, customercount);
 		}
-		else { cout << endl; cout << "incorrect input"; }
+		else { cout << endl; cout << "You have to insert the customer first :)"; }
 		break;
 
 	case 7:
