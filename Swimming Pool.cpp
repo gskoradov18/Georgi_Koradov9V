@@ -8,7 +8,7 @@ struct SWIMMINGPOOL
 	string FirstName = "";
 	string LastName = "";
 	int time = 0;
-	int id = 0;
+	int id=0;
 	string dayofweek = "";
 	int price;
 
@@ -48,7 +48,8 @@ void createCustomer(SWIMMINGPOOL* customers, int& customercount, int& maxId, SWI
 	customercount++;
 	maxId++;
 }
-//funstion for showing only one customer
+
+//function for showing only one customer
 void showCustomer(SWIMMINGPOOL customers)
 {
 	cout << "Customer's Full name: ";
@@ -64,7 +65,8 @@ void showCustomer(SWIMMINGPOOL customers)
 	cout << endl;
 
 }
-//funstion for showing all customers with loop
+
+//function for showing all customers with loop
 void showAllcustomers(SWIMMINGPOOL* customers, int& customercount)
 {
 		for (int i = 0; i < customercount; i++)
@@ -81,8 +83,9 @@ int getCustomerIndexById(SWIMMINGPOOL* customers, int& customercount, int id)
 	for (int i = 0; i < customercount; i++)
 	{
 		if (customers[i].id == id)
+		//it checks if the id in the array matches the id that is integrated and if it's true it returns the index of that element
 		{
-			return i;
+			return i;//its like an error
 		}
 	}
 
@@ -150,7 +153,7 @@ int PriceCalculator(SWIMMINGPOOL* customers, int& customercount)
 
 
 
-//presentation layer
+//////////////////////////////////presentation layer
 
 
 //functions for finding customers by createria
@@ -213,7 +216,7 @@ void findCusotmersByAge(SWIMMINGPOOL* customers, int& customercount)
 	}
 }
 
-//function for choosing which the customer you want to delete with id
+//function for choosing which customer's information you want to delete with id
 void deleteCustomerByID(SWIMMINGPOOL* customers, int& customercount)
 {
 	int id;
@@ -222,11 +225,10 @@ void deleteCustomerByID(SWIMMINGPOOL* customers, int& customercount)
 	deleteCustomer(customers, customercount, id);
 }
 
-//the mneu for searching customer by diffrent criterias
+//the menu for searching customer by diffrent criterias
 void findCustomerMenu(SWIMMINGPOOL* customers, int& customercount)
 {
 	int age, time, choice;
-	char dayOfWeek[3];
 	cout << endl << endl;
 	cout << "Which option you want to use" << endl << endl;
 	cout << "1. Find customer by the time" << endl;
@@ -260,7 +262,7 @@ void PriceMenu(SWIMMINGPOOL* customers, int& customercount)
 }
 
 
-//function for editing a customer
+//function for editing customer's information
 void editCusotmerMenu(SWIMMINGPOOL* customers, int& customercount, int& maxId)
 {
 	int id;
