@@ -13,7 +13,7 @@ struct SWIMMINGPOOL
 	int price;
 
 };
-
+//inserting a customer
 void insertCustomer(SWIMMINGPOOL* customers, int& customercount)
 {
 	cout << "Enter First name: ";
@@ -48,7 +48,7 @@ void createCustomer(SWIMMINGPOOL* customers, int& customercount, int& maxId, SWI
 	customercount++;
 	maxId++;
 }
-
+//funstion for showing only one customer
 void showCustomer(SWIMMINGPOOL customers)
 {
 	cout << "Customer's Full name: ";
@@ -64,7 +64,7 @@ void showCustomer(SWIMMINGPOOL customers)
 	cout << endl;
 
 }
-
+//funstion for showing all customers with loop
 void showAllcustomers(SWIMMINGPOOL* customers, int& customercount)
 {
 		for (int i = 0; i < customercount; i++)
@@ -75,6 +75,7 @@ void showAllcustomers(SWIMMINGPOOL* customers, int& customercount)
 		}
 }
 
+//getting customer index by his id
 int getCustomerIndexById(SWIMMINGPOOL* customers, int& customercount, int id)
 {
 	for (int i = 0; i < customercount; i++)
@@ -88,17 +89,20 @@ int getCustomerIndexById(SWIMMINGPOOL* customers, int& customercount, int id)
 	return -1;
 }
 
+//function which returns customers index
 SWIMMINGPOOL getCustomer(SWIMMINGPOOL* customers, int& customercount, int id)
 {
 	int index = getCustomerIndexById(customers, customercount, id);
 	return customers[index];
 }
 
-void updateCustomer(SWIMMINGPOOL* customers, SWIMMINGPOOL newCustomer, int& customercount, int id) {
+void updateCustomer(SWIMMINGPOOL* customers, SWIMMINGPOOL newCustomer, int& customercount, int id) 
+{
 	int index = getCustomerIndexById(customers, customercount, id);
 	customers[index] = newCustomer;
 }
 
+//function for deleting a customer from the array
 void deleteCustomer(SWIMMINGPOOL* customers, int& customercount, int id)
 {
 	int index = getCustomerIndexById(customers, customercount, id);
@@ -109,6 +113,7 @@ void deleteCustomer(SWIMMINGPOOL* customers, int& customercount, int id)
 	customercount--;
 }
 
+//function which does something like sales 
 void Prices(SWIMMINGPOOL* customers, int& customercount)
 {
 
@@ -126,6 +131,7 @@ void Prices(SWIMMINGPOOL* customers, int& customercount)
 	}
 }
 
+//function which calculates the prices
 int PriceCalculator(SWIMMINGPOOL* customers, int& customercount)
 {
 	int sum = 0;
@@ -144,11 +150,10 @@ int PriceCalculator(SWIMMINGPOOL* customers, int& customercount)
 
 
 
-
-
-
 //presentation layer
 
+
+//functions for finding customers by createria
 void findCusotmersByDay(SWIMMINGPOOL* customers, int& customercount)
 {
 	string day;
@@ -168,6 +173,7 @@ void findCusotmersByDay(SWIMMINGPOOL* customers, int& customercount)
 	}
 }
 
+//functions for finding customers by createria
 void findCusotmersByTime(SWIMMINGPOOL* customers, int& customercount)
 {
 	int time;
@@ -187,6 +193,7 @@ void findCusotmersByTime(SWIMMINGPOOL* customers, int& customercount)
 	}
 }
 
+//functions for finding customers by createria
 void findCusotmersByAge(SWIMMINGPOOL* customers, int& customercount)
 {
 	int age;
@@ -206,6 +213,7 @@ void findCusotmersByAge(SWIMMINGPOOL* customers, int& customercount)
 	}
 }
 
+//function for choosing which the customer you want to delete with id
 void deleteCustomerByID(SWIMMINGPOOL* customers, int& customercount)
 {
 	int id;
@@ -214,6 +222,7 @@ void deleteCustomerByID(SWIMMINGPOOL* customers, int& customercount)
 	deleteCustomer(customers, customercount, id);
 }
 
+//the mneu for searching customer by diffrent criterias
 void findCustomerMenu(SWIMMINGPOOL* customers, int& customercount)
 {
 	int age, time, choice;
@@ -242,6 +251,7 @@ void findCustomerMenu(SWIMMINGPOOL* customers, int& customercount)
 
 }
 
+//the menu for the prices
 void PriceMenu(SWIMMINGPOOL* customers, int& customercount)
 {
 	int Sum = 0;
@@ -249,6 +259,8 @@ void PriceMenu(SWIMMINGPOOL* customers, int& customercount)
 	cout << " The income for the week is: $" << Sum;
 }
 
+
+//function for editing a customer
 void editCusotmerMenu(SWIMMINGPOOL* customers, int& customercount, int& maxId)
 {
 	int id;
@@ -299,6 +311,8 @@ void editCusotmerMenu(SWIMMINGPOOL* customers, int& customercount, int& maxId)
 
 }
 
+
+//menu for choosing all the functions
 bool customersMenu(SWIMMINGPOOL* customers, int& customercount, int& maxId,bool &flag)
 {	
 	cout << endl << endl;
