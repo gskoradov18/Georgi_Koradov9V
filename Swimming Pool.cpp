@@ -8,51 +8,82 @@ struct SWIMMINGPOOL
 	string FirstName = "";
 	string LastName = "";
 	int time = 0;
-	int id=0;
+	int id = 0;
 	string dayofweek = "";
 	int price;
 
 };
-//inserting a customer
-void insertCustomer(SWIMMINGPOOL* customers, int& customercount)
-{
-	cout << "Enter First name: ";
-	cin >> customers[customercount].FirstName;
-	cout << "Enter Last name: ";
-	cin >> customers[customercount].LastName;
-	cout << "Enter age: ";
-	cin >> customers[customercount].age;
-	cout << "Enter time (round hours only): ";
-	cin >> customers[customercount].time;
-
-	cout << "Enter day (the first three letters)(small letters only): ";
-	cin >> customers[customercount].dayofweek;
-	if (customers[customercount].dayofweek == "sat" or customers[customercount].dayofweek == "sun")
-	{
-		cout << endl;
-		cout << "The pool is closed on Saturday and Sunday. ";
-	}
-	if (customers[customercount].dayofweek != "mon" and customers[customercount].dayofweek != "tue" and customers[customercount].dayofweek != "wed" and
-		customers[customercount].dayofweek != "thr" and customers[customercount].dayofweek != "fri" and customers[customercount].dayofweek != "sun"
-		and customers[customercount].dayofweek != "sat")
-	{
-		cout << "You have entered an incorrect day. ";
-	}
-	customercount++;
-}
-
-int generateId(int& maxId)
-{
-	return maxId++;
-}
 
 void createCustomer(SWIMMINGPOOL* customers, int& customercount, int& maxId, SWIMMINGPOOL newCusotmer)
 {
-	newCusotmer.id = generateId(maxId);
+	newCusotmer.id = maxId;
 	customers[customercount] = newCusotmer;
 	customercount++;
 	maxId++;
 }
+
+//inserting a customer
+void insertCustomer(SWIMMINGPOOL* customers, int& customercount, int& maxId)
+{
+
+	SWIMMINGPOOL newCustomer;
+	cout << "Enter First name: ";
+	cin >> newCustomer.FirstName;
+	cout << "Enter Last name: ";
+	cin >> newCustomer.LastName;
+	cout << "Enter age: ";
+
+	while (!(cin >> newCustomer.age))
+	{
+		cout << "You have enterd an incorrect age: " << endl;
+		cin.clear();
+		cin.ignore(123, '\n');
+		cout << "Enter a correct age: " << endl;
+
+	}
+	cout << "Enter time (round hours only): ";
+	while (!(cin >> newCustomer.time))
+	{
+		cout << "You have enterd an incorrect time: " << endl;
+		cin.clear();
+		cin.ignore(123, '\n');
+		cout << "Enter a correct time: " << endl;
+
+	}
+
+
+	cout << "Enter day (the first three letters)(small letters only): ";
+
+	while (!(cin >> newCustomer.dayofweek) or newCustomer.dayofweek.length() > 3 or newCustomer.dayofweek.length() < 3 or newCustomer.dayofweek == "sat" or newCustomer.dayofweek == "sun"
+		or newCustomer.dayofweek != "mon" and newCustomer.dayofweek != "tue" and newCustomer.dayofweek != "wed" and newCustomer.dayofweek != "thr" and newCustomer.dayofweek != "fri")
+	{
+		if (newCustomer.dayofweek == "sat" or newCustomer.dayofweek == "sun")
+		{
+			cout << endl;
+			cout << "The pool is closed on Saturday and Sunday. ";
+			cin.clear();
+			cin.ignore(123, '\n');
+			cout << "Enter working day: " << endl;
+		}
+		else
+		{
+			cout << "You have enterd an incorrect day: " << endl;
+			cin.clear();
+			cin.ignore(123, '\n');
+			cout << "Enter a correct day: " << endl;
+		}
+
+
+
+	}
+
+
+
+	createCustomer(customers, customercount, maxId, newCustomer);
+}
+
+
+
 
 //function for showing only one customer
 void showCustomer(SWIMMINGPOOL customers)
@@ -74,12 +105,12 @@ void showCustomer(SWIMMINGPOOL customers)
 //function for showing all customers with loop
 void showAllcustomers(SWIMMINGPOOL* customers, int& customercount)
 {
-		for (int i = 0; i < customercount; i++)
-		{
+	for (int i = 0; i < customercount; i++)
+	{
 
-			showCustomer(customers[i]);
+		showCustomer(customers[i]);
 
-		}
+	}
 }
 
 //getting customer index by his id
@@ -88,7 +119,7 @@ int getCustomerIndexById(SWIMMINGPOOL* customers, int& customercount, int id)
 	for (int i = 0; i < customercount; i++)
 	{
 		if (customers[i].id == id)
-		//it checks if the id in the array matches the id that is integrated and if it's true it returns the index of that element
+			//it checks if the id in the array matches the id that is integrated and if it's true it returns the index of that element
 		{
 			return i;//its like an error
 		}
@@ -104,7 +135,7 @@ SWIMMINGPOOL getCustomer(SWIMMINGPOOL* customers, int& customercount, int id)
 	return customers[index];
 }
 
-void updateCustomer(SWIMMINGPOOL* customers, SWIMMINGPOOL newCustomer, int& customercount, int id) 
+void updateCustomer(SWIMMINGPOOL* customers, SWIMMINGPOOL newCustomer, int& customercount, int id)
 {
 	int index = getCustomerIndexById(customers, customercount, id);
 	customers[index] = newCustomer;
@@ -119,6 +150,7 @@ void deleteCustomer(SWIMMINGPOOL* customers, int& customercount, int id)
 		customers[i] = customers[i + 1];
 	}
 	customercount--;
+
 }
 
 //function which does something like sales 
@@ -322,8 +354,8 @@ void editCusotmerMenu(SWIMMINGPOOL* customers, int& customercount, int& maxId)
 
 
 //menu for choosing all the functions
-bool customersMenu(SWIMMINGPOOL* customers, int& customercount, int& maxId,bool &flag)
-{	
+bool customersMenu(SWIMMINGPOOL* customers, int& customercount, int& maxId, bool& flag)
+{
 	cout << endl << endl;
 
 	int option;
@@ -341,7 +373,7 @@ bool customersMenu(SWIMMINGPOOL* customers, int& customercount, int& maxId,bool 
 	switch (option)
 	{
 	case 1:
-		insertCustomer(customers, customercount);
+		insertCustomer(customers, customercount, maxId);
 		flag = true;
 		break;
 	case 2:
@@ -402,7 +434,7 @@ int main()
 	Welcoming();
 
 	int customercount = 0;
-	int maxId = 0;
+	int maxId = 1;
 	bool menu = true;
 	bool flag;
 
