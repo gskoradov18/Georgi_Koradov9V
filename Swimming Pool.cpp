@@ -41,9 +41,14 @@ void insertCustomer(SWIMMINGPOOL* customers, int& customercount)
 	customercount++;
 }
 
+int generateId(int& maxId)
+{
+	return maxId++;
+}
+
 void createCustomer(SWIMMINGPOOL* customers, int& customercount, int& maxId, SWIMMINGPOOL newCusotmer)
 {
-	newCusotmer.id = maxId;
+	newCusotmer.id = generateId(maxId);
 	customers[customercount] = newCusotmer;
 	customercount++;
 	maxId++;
@@ -220,6 +225,8 @@ void findCusotmersByAge(SWIMMINGPOOL* customers, int& customercount)
 void deleteCustomerByID(SWIMMINGPOOL* customers, int& customercount)
 {
 	int id;
+	cout << endl;
+	showAllcustomers(customers, customercount);
 	cout << "Enter the id of the customer you want to delete: ";
 	cin >> id;
 	deleteCustomer(customers, customercount, id);
